@@ -1,0 +1,46 @@
+import = [
+# allows you to easily change themes. check './themes' for all available themes
+    "~/.config/alacritty/themes/themes/gruvbox_material_medium_dark.toml",
+
+# keybinds
+    "~/.config/alacritty/keybinds.toml"
+]
+
+# The `env` table allows you to add environment variables that will be
+# added to the environment of each Alacritty instance.
+[env]
+TERM = "alacritty"
+
+[font]
+normal = { family = "Hack Nerd Font", style = "Regular"}
+size = 10
+
+
+# The `window` table allows you to customize the window dimensions and behavior.
+[window]
+  dimensions = { columns = 80, lines = 24 }
+  ## decorations - window decorations (requires restart)
+  # Full = Borders and title bar 
+  # None = Neither borders and title bar
+  decorations = "None"
+  opacity = 0.9
+
+
+# The `shell` table allows you to customize the shell used by Alacritty.
+[shell]
+  program = "tmux"
+  # args = ["-c zsh"]
+
+[cursor]
+## shape - sets the glyph on the cursor
+# options:
+# "Block"     = 
+# "Underline" = '_'
+# "Beam"      = '|'
+## blinking - behaviour of blinking
+# options:
+# "Never"  - Prevent the cursor from ever blinking
+# "Off"    - Diable blinking by default
+# "On"     - Enable blinking by default
+# "Always" - Force the cursor to blink always
+#style = { <shape>, <blinking }

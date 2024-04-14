@@ -1,0 +1,89 @@
+######################################
+## zsh_aliases - file for zsh aliases
+######################################
+#
+# alias a prompt using the "alias" tag
+# "alias ALIAS="COMMAND"
+
+# update system
+if command -v pacman &> /dev/null ; then
+  alias update='sudo pacman -Syu'
+  alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'   # remove orphaned packages
+  alias yaysua='yay -Sua --noconfirm'                # update AUR packages
+  alias yaysyu='yay -Syu --noconfirm'                # update all packages
+elif command -v apt &> /dev/null ; then
+  alias update='sudo apt update && sudo apt upgrade'
+  alias cleanup='sudo apt-get autoremove'
+fi
+
+
+# adding flags
+alias df='df -h'
+alias free='free -m'
+alias btm='btm nord'
+alias mkd='mkdir -p'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rmd='/bin/rm  --recursive --force --verbose '
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+alias dosbox=dosbox -conf "XDG_CONFIG_HOME"/dosbox/dosbox.conf
+alias monerod=monerod --data-dir "$XDG_DATA_HOME"/bitmonero
+
+# Move parent folders.
+alias ..='cd ..;pwd'
+alias ...='cd ../..;pwd'
+alias ....='cd ../../..;pwd'
+
+alias bd='cd "$OLDPWD"'
+
+# call an alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Count all files (recursively) in the current folder
+alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
+
+# free up memory
+alias mem="free && sync && sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches' && free"
+
+alias mktar="tar -cvf"
+alias mkgz="tar -cvzf"
+# alias untar="tar -xvf"
+# alias ungz="tar -xvzf"
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# shortening commands
+alias hist='history'
+alias cls='clear'
+alias ncm='ncmpcpp'
+alias maria='mariadb'
+alias da='date "+%Y-%m-%d %A %T %Z"'
+
+# nvim ftw!
+alias snv='sudo vim'
+alias nv='nvim'                            # the one true editor
+alias nvcode='nv $CODING'                  # code in the true editor
+alias nano="$EDITOR"
+
+# bare git repo for dotfiles
+alias config="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
+
+# configurations
+alias nvconf="$EDITOR $XDG_CONFIG_HOME/nvim/lua/user"
+alias zshconf="$EDITOR $ZDOTDIR"
+alias wmconf="$EDITOR $XDG_CONFIG_HOME/$wm"
+
+# Changing "ls" to "exa"
+alias ls='exa --color=always --group-directories-first'  # my preferred listing
+alias la='exa -a --color=always --group-directories-first'   # all files and dirs
+alias lr='exa -lRh --color=always--group group-directories-first'
+alias ll='exa -l --color=always --group-directories-first'   # long format
+alias lla='exa -la --color=always --group-directories-first' # long format + dotfiles
+alias lt='exa -aT --color=always --group-directories-first'  # tree listing
+alias lm='exa -alh | more'
+alias l.='exa -a | egrep "^\."'
+alias lf='exa -f'
+alias ld='exa -d'

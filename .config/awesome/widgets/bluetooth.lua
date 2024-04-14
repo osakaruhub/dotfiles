@@ -48,7 +48,7 @@ widget_button:buttons(
 
 awful.tooltip(
    {
-      objects = {widget_button},
+      objects = { widget_button },
       mode = "outside",
       align = "right",
       timer_function = function()
@@ -58,7 +58,7 @@ awful.tooltip(
             return "Bluetooth is off"
          end
       end,
-      preferred_positions = {"right", "left", "top", "bottom"}
+      preferred_positions = { "right", "left", "top", "bottom" }
    }
 )
 

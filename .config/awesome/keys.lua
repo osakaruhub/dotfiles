@@ -153,12 +153,24 @@ keys.globalkeys = gears.table.join(
       end,
       { description = "open a terminal", group = "launcher" }
    ),
-   -- launch rofi
+   -- launch rofi-run
    awful.key({ modkey }, "d",
       function()
          awful.spawn(apps.launcher)
       end,
       { description = "application launcher", group = "launcher" }
+   ),
+   -- launch greenclip
+   awful.key({ modkey }, "c",
+      function()
+         awful.spawn("rofi -modi \"clipboard:greenclip print\" -show clipboard -run-command '{cmd}'")
+      end
+   ),
+   -- launch rofi-mpd
+   awful.key({ modkey }, "s",
+      function()
+         awful.spawn("rofi-mpd -s")
+      end
    ),
 
    -- =========================================
@@ -247,7 +259,10 @@ keys.globalkeys = gears.table.join(
    ),
 
    -- suspend the machine
-   awful.key({ altkey, "Control" }, "s", function() awful.spawn("systemctl suspend") end,
+   awful.key({ altkey, "Control" }, "s",
+      function()
+         awful.spawn("systemctl suspend")
+      end,
       { description = "Suspend", group = "System" }
    ),
 
@@ -341,12 +356,12 @@ keys.globalkeys = gears.table.join(
    -- SCREEN FOCUSING
    -- =========================================
 
-   -- Focus screen by index (cycle through screens)
-   awful.key({ modkey }, "s",
-      function()
-         awful.screen.focus_relative(1)
-      end
-   ),
+   -- -- Focus screen by index (cycle through screens)
+   -- awful.key({ modkey }, "s",
+   --    function()
+   --       awful.screen.focus_relative(1)
+   --    end
+   -- ),
 
    -- =========================================
    -- CLIENT RESIZING

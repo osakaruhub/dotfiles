@@ -106,7 +106,20 @@ function rules.create(clientkeys, clientbuttons)
                "browser"
             },
          },
-         properties = { switchtotag = true }
+         properties = {
+            tag = "2",
+            switchtotag = true
+         }
+      },
+
+      {
+         rule_any = {
+            name = "abaddon", "thunderbird", "whatsie"
+         },
+         properties = {
+
+            tag = "8"
+         }
       },
 
       -- Visualizer

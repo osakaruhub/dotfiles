@@ -1,0 +1,39 @@
+//@theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
+//@theme "/usr/share/rofi/themes/glue_pro_blue.rasi"
+@theme "/usr/share/rofi/themes/dracula2.rasi"
+configuration {
+ modi: "window,drun,ssh,combi,calc";
+ icon-theme: "Tela-dark";
+ font: "meslo 10";
+ fake-transparency: true;
+ display-drun: "";
+ combi-modi: "window,drun,ssh";
+}
+
+* {
+    background-color: transparent;
+    background: #5B60711A;
+    background-alt: #ffffff13;
+    text-color: #D8DEE9;
+    primary: #A3BE8C;
+    urgent: #BF616A;
+    background: transparent;
+}
+
+window {
+    height: 33%;
+    width: 50%;
+    transparency: "real";
+    background-color: @background;
+}
+inputbar {
+    background-color: @background-alt;
+    text-color: @foreground;
+    border-radius: 25%;
+    padding: 1.1%;
+}
+
+prompt {
+    enabled: true;
+    margin: 0 1% 0 0;
+}

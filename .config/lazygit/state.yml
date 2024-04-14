@@ -1,0 +1,17 @@
+lastupdatecheck: 0
+recentrepos:
+- /home/oskar/Coding/rofi-youtube
+- /home/oskar/.config/nvim/lua/user
+- /home/oskar/.local/share/com.bridge.dev/bridge/projects/vaperizor-behavior-pack
+- /home/oskar/.config/nvim
+startuppopupversion: 5
+customcommandshistory:
+- git fetch
+- q
+- git commit -m "finished index.html"
+- git add *
+- add *
+- push
+- help
+hidecommandlog: true
+ignorewhitespaceindiffview: false

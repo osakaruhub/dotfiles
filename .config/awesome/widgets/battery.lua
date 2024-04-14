@@ -57,10 +57,10 @@ widget_button:buttons(
 )
 -- Alternative to naughty.notify - tooltip. You can compare both and choose the preferred one
 local battery_popup = awful.tooltip({
-   objects = {widget_button},
+   objects = { widget_button },
    mode = "outside",
    align = "left",
-   referred_positions = {"right", "left", "top", "bottom"}
+   referred_positions = { "right", "left", "top", "bottom" }
 })
 
 local function show_battery_warning()
@@ -87,7 +87,7 @@ watch('bash -c \'acpi -i | grep -E "^Battery [0-9]+: ([^%]+%)$|(.+remaining)$|(.
       for s in stdout:gmatch("[^\r\n]+") do
          local status, charge_str, time = string.match(s, ".+: (%a+), (%d?%d?%d)%%,?.*")
          if status ~= nil then
-            table.insert(battery_info, {status = status, charge = tonumber(charge_str)})
+            table.insert(battery_info, { status = status, charge = tonumber(charge_str) })
          else
             local cap_str = string.match(s, ".+:.+last full capacity (%d+)")
             table.insert(capacities, tonumber(cap_str))
@@ -109,12 +109,18 @@ watch('bash -c \'acpi -i | grep -E "^Battery [0-9]+: ([^%]+%)$|(.+remaining)$|(.
 
          charge = charge + batt.charge * capacities[i]
       end
+      local handle = io.popen("acpi -b")
+      local result = handle:read("*a")
+      handle:close()
+
+      local status = string.match(result, "Charging") or string.match(result, "Discharging")
+      local charge = string.match(result, "(%d?%d?%d)%%")
       charge = charge / capacity
 
       if (charge >= 0 and charge < 15) then
          if status ~= "Charging" and os.difftime(os.time(), last_battery_check) > 300 then
             -- if 5 minutes have elapsed since the last warning
-            last_battery_check = time()
+            last_battery_check = os.time()
 
             show_battery_warning()
          end

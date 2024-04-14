@@ -27,31 +27,32 @@ local theme_config_dir = gears.filesystem.get_configuration_dir() .. "/configura
 
 -- define default apps (global variable so other components can access it)
 apps = {
-   network_manager = "", -- recommended: nm-connection-editor
-   power_manager = "",   -- recommended: xfce4-power-manager
+   network_manager = "nm-connection-editor", -- recommended: nm-connection-editor
+   power_manager = "xfce4-power-manager",    -- recommended: xfce4-power-manager
    terminal = "alacritty",
    launcher = "rofi -normal-window -modi drun -show drun -theme " .. theme_config_dir .. "rofi.rasi",
    lock = "i3lock",
    screenshot = "scrot -e 'mv $f $XDG_/ 2>/dev/null'",
-   filebrowser = "nemo"
+   filebrowser = "thunar"
 }
 
 -- define wireless and ethernet interface names for the network widget
 -- use `ip link` command to determine these
 network_interfaces = {
-   wlan = 'wlp1s0',
-   lan = 'enp1s0'
+   wlan = 'wlp6s0',
+   lan = 'enp9s0'
 }
 
 -- List of apps to run on start-up
 local run_on_start_up = {
    "picom --experimental-backends --config " .. theme_config_dir .. "picom.conf",
+   "syncthingtray",
+   "greenclip daemon",
    "redshift",
-   "mpd",
-   "thunderbird",
    "birdtray",
+   "thunderbird",
    "keepassxc",
-   "discord --start-minized",
+   "abaddon",
    "unclutter"
 }
 
@@ -74,6 +75,9 @@ for _, app in ipairs(run_on_start_up) do
    -- pipe commands to bash to allow command to be shell agnostic
    awful.spawn.with_shell(string.format("echo 'pgrep -u $USER -x %s > /dev/null || (%s)' | bash -", findme, app), false)
 end
+
+-- -- run all .desktop files listed in ~/.config/autostart
+-- awful.spawn.with_shell("dex -s ~/.config/autostart")
 
 -- Import theme
 local beautiful = require("beautiful")

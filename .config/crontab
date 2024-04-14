@@ -1,0 +1,5 @@
+# rss to email retriever
+* */3 * * * r2e --no-send
+
+# # Animal Crossing Radio
+# 0 * * * * sh ~/.local/bin/acradio.sh
