@@ -16,7 +16,6 @@ elif command -v apt &> /dev/null ; then
   alias cleanup='sudo apt-get autoremove'
 fi
 
-
 # adding flags
 alias df='df -h'
 alias free='free -m'
@@ -36,7 +35,6 @@ alias ....='cd ../../..;pwd'
 
 alias bd='cd "$OLDPWD"'
 
-# call an alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Count all files (recursively) in the current folder
@@ -45,10 +43,7 @@ alias countfiles="for t in files links directories; do echo \`find . -type \${t:
 # free up memory
 alias mem="free && sync && sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches' && free"
 
-alias mktar="tar -cvf"
-alias mkgz="tar -cvzf"
-# alias untar="tar -xvf"
-# alias ungz="tar -xvzf"
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -56,16 +51,19 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # shortening commands
+alias mktar="tar -cvf"
+alias mkgz="tar -cvzf"
 alias hist='history'
+alias fetch='fastfetch'
 alias cls='clear'
 alias ncm='ncmpcpp'
 alias maria='mariadb'
 alias da='date "+%Y-%m-%d %A %T %Z"'
+alias t='todo.sh'
 
 # nvim ftw!
-alias snv='sudo vim'
+alias sv='sudo vim'
 alias nv='nvim'                            # the one true editor
-alias nvcode='nv $CODING'                  # code in the true editor
 alias nano="$EDITOR"
 
 # bare git repo for dotfiles

@@ -5,17 +5,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
 ################################
 ## zshrc - config file for zsh.
 ################################
 
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/oskar/.zshrc'
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-#
 # Source manjaro-zsh-configuration
 if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
   source /usr/share/zsh/manjaro-zsh-config
@@ -25,19 +19,18 @@ if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
 
-# run commands on startup
-# # export environment variables
-# if [[ -e $ZDOTDIR/.zshenv ]]; then
-#   source $ZDOTDIR/.zshenv
-# fi
+autoload -Uz compinit
+compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+
+
 # export zsh aliases
-if [[ -e $ZDOTDIR/.zsh-aliases ]]; then
-  source $ZDOTDIR/.zsh-aliases
+if [[ -e ${ZDOTDIR:-~}/.zsh-aliases ]]; then
+  source ${ZDOTDIR:-~}/.zsh-aliases
 fi
 
 # export zsh functions
-if [[ -e $ZDOTDIR/.funcs ]]; then
-  source $ZDOTDIR/.funcs
+if [[ -e ${ZDOTDIR:-~}/.funcs ]]; then
+  source ${ZDOTDIR:-~}/.funcs
 fi
 
 # Use powerline
@@ -48,4 +41,4 @@ USE_POWERLINE="true"
 HAS_WIDECHARS="false"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ${ZDOTDIR:-~}/.p10k.zsh ]] || source ${ZDOTDIR:-~}/.p10k.zsh
