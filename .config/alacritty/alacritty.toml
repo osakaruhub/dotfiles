@@ -1,6 +1,6 @@
 import = [
 # allows you to easily change themes. check './themes' for all available themes
-    "~/.config/alacritty/themes/themes/gruvbox_material_medium_dark.toml",
+    "~/.config/alacritty/themes/themes/darcula.toml",
 
 # keybinds
     "~/.config/alacritty/keybinds.toml"
@@ -43,4 +43,4 @@ size = 10
 # "Off"    - Diable blinking by default
 # "On"     - Enable blinking by default
 # "Always" - Force the cursor to blink always
-#style = { <shape>, <blinking }
+# style = { <shape>, <blinking> }

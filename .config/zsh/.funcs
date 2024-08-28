@@ -4,26 +4,38 @@
 ##################################################
 #
 # add a function with this syntax
-# FUNCTION_NAME(){...}
+# FUNCTION_NAME() {...}
 
 javax() {
 	javac $1 && echo "compile complete." && java $(echo "$1" | sed 's/\.[^.]*$//')
 }
 
-jpgtopdf() {
-  if [[ -f $1 ]]; then
-    convert "$1" "$2".pdf 
-    touch -r "$1" "$2".pdf
-    rm $1
+# jpgtopdf() {
+#   if [[ -f $1 ]]; then
+#     convert "$1" "$2".pdf 
+#     touch -r "$1" "$2".pdf
+#     rm $1
+#   else
+#     let i=0
+#     for f in "$1"/*.jpg; do
+#       convert "$f" "$i".pdf
+#       i=$((i+1))
+#     done
+#     pdfunite $(ls -v "$1"/*.pdf) "$2".pdf
+#     touch -r "$(find -name "*.jpg" -print -quit)" "$2".pdf
+#     find "$1" -type f ! -name "$2".pdf -delete
+#   fi
+# }
+
+scan() {
+  scanimage --batch --source "ADF" --format=pdf > out1.pdf
+	read -q "choice?Are your pages double-sided? flip pages before answering [y/n]: "
+	if [[ "$choice" == "y" || "$choice" == "yes" ]]; then
+    scanimage --batch --source "ADF" --format=pdf > out2.pdf
+    pdftk A=out1.pdf B=out2.pdf shuffle A1 Bend-1 output "$1".pdf
+    rm out1.pdf out2.pdf
   else
-    let i=0
-    for f in "$1"/*.jpg; do
-      convert "$f" "$i".pdf
-      i=$((i+1))
-    done
-    pdfunite $(ls -v "$1"/*.pdf) "$2".pdf
-    touch -r "$(find -name "*.jpg" -print -quit)" "$2".pdf
-    find "$1" -type f ! -name "$2".pdf -delete
+  	mv out1.pdf "$1".pdf
   fi
 }
 

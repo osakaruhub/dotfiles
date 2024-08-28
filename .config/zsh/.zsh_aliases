@@ -28,6 +28,9 @@ alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 alias dosbox=dosbox -conf "XDG_CONFIG_HOME"/dosbox/dosbox.conf
 alias monerod=monerod --data-dir "$XDG_DATA_HOME"/bitmonero
 
+# replace sudo with doas
+alias sudo='doas'
+
 # Move parent folders.
 alias ..='cd ..;pwd'
 alias ...='cd ../..;pwd'
@@ -54,12 +57,13 @@ alias fgrep='fgrep --color=auto'
 alias mktar="tar -cvf"
 alias mkgz="tar -cvzf"
 alias hist='history'
-alias fetch='fastfetch'
+alias ff='fastfetch'
 alias cls='clear'
 alias ncm='ncmpcpp'
 alias maria='mariadb'
 alias da='date "+%Y-%m-%d %A %T %Z"'
 alias t='todo.sh'
+alias lg='lazygit'
 
 # nvim ftw!
 alias sv='sudo vim'
