@@ -1,0 +1,6 @@
+# The keyboard.binds table allows you to customize the key bindings used by Alacritty.
+[keyboard] 
+bindings = [
+  { key = "Enter", mods = "Control | Shift", action = "SpawnNewInstance" },
+  # Other key bindings can be added here as needed.
+]

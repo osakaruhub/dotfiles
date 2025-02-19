@@ -1,0 +1,22 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = osakaruhub
+	email = teddyfreddy10@gmail.com
+	mail = teddyfreddy10@gmail.com
+    signingkey = 8F974BA2F91EE004
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[init]
+	defaultBranch = main
+[alias]
+	pr = pull --rebase
+[http]
+	sslVerify = true
